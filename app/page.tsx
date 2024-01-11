@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Shopping from "@/public/qw.png";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShoppingBasketIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
