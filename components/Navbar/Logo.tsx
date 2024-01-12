@@ -1,7 +1,10 @@
+import Link from "next/link";
 const Logo = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold">Unparalleled</h1>
+      <Link href="/">
+        <h1 className="text-xl font-bold tracking-wider">UNPARALLELD</h1>
+      </Link>
     </div>
   );
 };
