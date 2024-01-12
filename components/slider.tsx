@@ -1,25 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { DotIcon } from "lucide-react";
-import Link from "next/link";
 
 function Slider() {
   const slides = [
     {
-      url: "https://source.unsplash.com/2672x2672/?male,model",
+      url: "/p01.jpg",
     },
     {
-      url: "https://source.unsplash.com/2672x2672/?male,model",
+      url: "/p02.jpg",
     },
     {
-      url: "https://source.unsplash.com/2672x2672/?male,model",
+      url: "/p03.jpg",
     },
     {
-      url: "https://source.unsplash.com/2672x2672/?male,model",
-    },
-    {
-      url: "https://source.unsplash.com/2671x2671/?male,model",
+      url: "/p04.jpg",
     },
   ];
 
@@ -40,32 +36,52 @@ function Slider() {
   const goToSlide = (slideIndex: any) => {
     setCurrentIndex(slideIndex);
   };
+  const intervalRef = useRef<any>(null);
+
+  const autoSlide = () => {
+    // Clear any existing interval
+    if (intervalRef.current !== null) {
+      clearInterval(intervalRef.current);
+    }
+
+    // Automatically advance to the next slide every 5000 milliseconds (5 seconds)
+    intervalRef.current = setInterval(() => {
+      nextSlide();
+    }, 3000);
+  };
+
+  // Start the auto slide when the component mounts
+  useEffect(() => {
+    autoSlide();
+
+    return () => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [currentIndex]);
 
   return (
-    <div className="max-w-[1400px] h-[780px] w-full m-auto  relative group">
-      <Link
-        href="/shop"
-        className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-      >
-        <div
-          style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-          className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-        ></div>
-      </Link>
+    <div className="max-w-full sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] xl:max-w-[1200px] mx-auto h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[90vh] relative group">
+      <div
+        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+        className="w-full h-full rounded-2xl bg-center bg-contain bg-no-repeat duration-500"
+      ></div>
       {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+      <div className="hidden sm:group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <ArrowLeft onClick={prevSlide} size={30} />
       </div>
       {/* Right Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+      <div className="hidden sm:group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
         <ArrowRight onClick={nextSlide} size={30} />
       </div>
-      <div className="flex  justify-center py-2">
+      <div className="flex top-4 justify-center py-2">
         {slides.map((slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
-            className="text-2xl cursor-pointer top-4"
+            className="text-2xl cursor-pointer"
           >
             <DotIcon />
           </div>
