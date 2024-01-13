@@ -29,7 +29,7 @@ const LoginForm: React.FC = () => {
       <div className="flex flex-col justify-center items-center ">
         <form className="  p-8 max-w-md rounded-lg shadow-sm shadow-gray-400 h-full">
           <label className="block mb-2" htmlFor="email">
-            Email:
+            Email
           </label>
           <input
             type="email"
@@ -42,7 +42,7 @@ const LoginForm: React.FC = () => {
           />
 
           <label className="block mb-2" htmlFor="password">
-            Password:
+            Password
           </label>
           <input
             type="password"
@@ -57,7 +57,7 @@ const LoginForm: React.FC = () => {
           <Button type="submit">Login</Button>
         </form>
         <span className="mt-2">
-          Don't have an account?{" "}
+          No account?
           <Link href="/signup" className="hover:underline">
             Sign Up
           </Link>

@@ -39,18 +39,15 @@ function Slider() {
   const intervalRef = useRef<any>(null);
 
   const autoSlide = () => {
-    // Clear any existing interval
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
     }
 
-    // Automatically advance to the next slide every 5000 milliseconds (5 seconds)
     intervalRef.current = setInterval(() => {
       nextSlide();
     }, 3000);
   };
 
-  // Start the auto slide when the component mounts
   useEffect(() => {
     autoSlide();
 

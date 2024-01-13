@@ -42,7 +42,7 @@ const SignupForm: React.FC = () => {
             onChange={handleChange}
           />
           <label className="block mb-2" htmlFor="email">
-            Email:
+            Email
           </label>
           <input
             type="email"
@@ -55,7 +55,7 @@ const SignupForm: React.FC = () => {
           />
 
           <label className="block mb-2" htmlFor="password">
-            Password:
+            Password
           </label>
           <input
             type="password"
@@ -70,7 +70,7 @@ const SignupForm: React.FC = () => {
           <Button type="submit">Register</Button>
         </form>
         <span className="mt-2">
-          Already have an account?{" "}
+          Already have an account?
           <Link href="/login" className="hover:underline">
             Login
           </Link>
