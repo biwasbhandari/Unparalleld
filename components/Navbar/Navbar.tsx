@@ -1,32 +1,70 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { MenuIcon, SidebarClose, User, ShoppingBasket } from "lucide-react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-const Navbar = () => {
+interface NavLink {
+  label: string;
+  link: string;
+}
+
+const Navbar: React.FC = () => {
   const [isSideMenuOpen, setMenu] = useState(false);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [scrollingDown, setScrollingDown] = useState(false);
 
   const { data: session } = useSession();
 
-  const navlinks = [
+  const navlinks: NavLink[] = [
     { label: "Home", link: "/" },
     { label: "About", link: "/about" },
     { label: "Shop", link: "/shop" },
   ];
 
+  const closeSideMenu = () => {
+    setMenu(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > prevScrollY) {
+        setScrollingDown(true);
+      } else {
+        setScrollingDown(false);
+      }
+
+      setPrevScrollY(currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollY]);
+
   return (
-    <nav className="flex justify-between px-8 items-center py-3 z-10 animate-fade-in font-normal">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: scrollingDown ? -100 : 0 }}
+      transition={{ duration: 0.6 }}
+      className={clsx(
+        "flex justify-between px-8 items-center py-3 z-10 animate-fade-in font-normal",
+        !scrollingDown && "sticky top-0"
+      )}
+    >
       <div className="flex items-center gap-8">
         <section className="flex items-center gap-4">
           <MenuIcon
             onClick={() => setMenu(true)}
             className="text-3xl cursor-pointer lg:hidden"
           />
-          <Link href={"/"} className="text-3xl tracking-wide">
+          <Link href={"/"} className="md:text-3xl text-xl tracking-wide">
             UNPARALLELD
           </Link>
         </section>
@@ -56,7 +94,12 @@ const Navbar = () => {
             className="mt-0 mb-8 text-3xl cursor-pointer"
           />
           {navlinks.map((item, index) => (
-            <Link key={index} className="font-bold" href={item.link}>
+            <Link
+              key={index}
+              className="font-bold"
+              href={item.link}
+              onClick={closeSideMenu}
+            >
               {item.label}
             </Link>
           ))}
@@ -87,7 +130,7 @@ const Navbar = () => {
           </Link>
         )}
       </section>
-    </nav>
+    </motion.nav>
   );
 };
 
