@@ -18,7 +18,7 @@ export default function Home() {
 
       <hr className="border-gray-300 my-4 md:hidden" />
 
-      <div className="relative h-full overflow-hidden order-1 md:order-2">
+      <div className="relative h-full overflow-hidden order-1 md:order-2 -z-30">
         <div className="absolute inset-0 w-full h-full bg-gray-300 animate-fade-in">
           <Slider />
         </div>

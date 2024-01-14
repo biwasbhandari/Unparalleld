@@ -89,3 +89,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #333; /* Slightly darker grey on hover */
 }
+
+.img {
+  @apply object-cover w-full h-full;
+}
+
+.scale-animation {
+  @apply hover:scale-125 transition-all duration-700;
+}

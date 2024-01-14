@@ -1,13 +1,94 @@
-import Logo from "./Logo";
-import ModeToggle from "./ModeToggle";
-import { NavItems } from "./NavItems";
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import { MenuIcon, SidebarClose, User, ShoppingBasket } from "lucide-react";
+import clsx from "clsx";
+import { Button } from "../ui/button";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
-export const Navbar = () => {
+const Navbar = () => {
+  const [isSideMenuOpen, setMenu] = useState(false);
+
+  const { data: session } = useSession();
+
+  const navlinks = [
+    { label: "Home", link: "/" },
+    { label: "About", link: "/about" },
+    { label: "Shop", link: "/shop" },
+  ];
+
   return (
-    <div className="flex justify-around items-center p-2">
-      <Logo />
-      <NavItems />
-      <ModeToggle />
-    </div>
+    <nav className="flex justify-between px-8 items-center py-3 z-10 animate-fade-in font-normal">
+      <div className="flex items-center gap-8">
+        <section className="flex items-center gap-4">
+          <MenuIcon
+            onClick={() => setMenu(true)}
+            className="text-3xl cursor-pointer lg:hidden"
+          />
+          <Link href={"/"} className="text-3xl tracking-wide">
+            UNPARALLELD
+          </Link>
+        </section>
+      </div>
+
+      <div className="flex-grow  items-center justify-center hidden lg:flex">
+        {navlinks.map((item, index) => (
+          <Link
+            key={index}
+            href={item.link}
+            className="lg:block mx-4 hover:underline"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+
+      <div
+        className={clsx(
+          "fixed h-full w-screen lg:hidden bg-black/50 backdrop-blur-sm top-0 right-0 -translate-x-full transition-all",
+          isSideMenuOpen && "translate-x-0"
+        )}
+      >
+        <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 z-50 w-56 flex">
+          <SidebarClose
+            onClick={() => setMenu(false)}
+            className="mt-0 mb-8 text-3xl cursor-pointer"
+          />
+          {navlinks.map((item, index) => (
+            <Link key={index} className="font-bold" href={item.link}>
+              {item.label}
+            </Link>
+          ))}
+        </section>
+      </div>
+
+      <section className="flex items-center gap-4">
+        <ShoppingBasket className="text-3xl" />
+        {session ? (
+          <Link href={`/users/${session.user.id}`}>
+            {session.user.image ? (
+              <div className="w-10 h-10 rounded-full overflow-hidden">
+                <Image
+                  src={session.user.image}
+                  alt={session.user.name!}
+                  width={40}
+                  height={40}
+                  className="img scale-animation"
+                />
+              </div>
+            ) : (
+              <User className="cursor-pointer rounded-full" />
+            )}
+          </Link>
+        ) : (
+          <Link href="/auth">
+            <Button>Login</Button>
+          </Link>
+        )}
+      </section>
+    </nav>
   );
 };
+
+export default Navbar;

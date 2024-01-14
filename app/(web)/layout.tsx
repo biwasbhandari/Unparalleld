@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import { NextAuthProvider } from "@/components/AuthProvider/AuthProvider";
+import Toast from "@/components/Toast/Toast";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
+  style: ["italic", "normal"],
+  variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
   title: "Unparalleled | Dress to Intrigue",
@@ -24,12 +31,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <div>
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
+      <body className={poppins.className}>
+        <main className="font-normal">
+          <NextAuthProvider>
+            <Toast />
+            <Navbar />
+            {children}
+            <Footer />
+          </NextAuthProvider>
+        </main>
       </body>
     </html>
   );
