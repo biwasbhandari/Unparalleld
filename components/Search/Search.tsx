@@ -41,7 +41,7 @@ const Search: FC<Props> = ({
           </label>
           <div className="relative">
             <select
-              className="w-full px-4 py-2 capitalize rounded leading-tight"
+              className="w-full px-4 py-2 capitalize rounded leading-tight border"
               onChange={handleTshirtSizeChange}
               value={tshirtSizeFilter}
             >
@@ -58,7 +58,7 @@ const Search: FC<Props> = ({
             type="search"
             id="search"
             placeholder="search..."
-            className="w-full px-4 py-3 rounded leading-tight focus:outline-none"
+            className="w-full px-4 py-3 rounded leading-tight border"
             value={searchQuery}
             onChange={handleSearchQuery}
           />
