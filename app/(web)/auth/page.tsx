@@ -49,7 +49,7 @@ const LoginForm: React.FC = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 min-h-[95vh] items-center animate-fade-in">
       <div className="flex justify-center items-center border-gray-400 border-r-2 bg-gray-200 rounded-lg">
         <Image
-          src="/p01.jpg"
+          src="/p02.jpg"
           alt="Image"
           className="max-w-full h-auto "
           height={500}

@@ -5,7 +5,7 @@ import CountUp from "../CountUp/CountUp";
 
 const HeroSection = () => {
   return (
-    <div className="hero-section bg-cover bg-center relative h-screen">
+    <div className="hero-section bg-cover bg-center relative h-screen -z-10">
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-[#222] z-10">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">

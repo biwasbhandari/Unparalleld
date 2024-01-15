@@ -54,17 +54,17 @@ const Navbar: React.FC = () => {
       animate={{ y: scrollingDown ? -100 : 0 }}
       transition={{ duration: 0.6 }}
       className={clsx(
-        "flex justify-between px-8 items-center py-3 z-10 animate-fade-in font-normal",
+        "flex justify-between px-8 items-center py-3 z-100 animate-fade-in font-normal bg-gray-100 ",
         !scrollingDown && "sticky top-0"
       )}
     >
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-8 z-100">
         <section className="flex items-center gap-4">
           <MenuIcon
             onClick={() => setMenu(true)}
             className="text-3xl cursor-pointer lg:hidden"
           />
-          <Link href={"/"} className="md:text-3xl text-xl tracking-wide">
+          <Link href={"/"} className="md:text-2xl text-xl tracking-widest">
             UNPARALLELD
           </Link>
         </section>
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
           <Link
             key={index}
             href={item.link}
-            className="lg:block mx-4 hover:underline"
+            className="lg:block mx-4 hover:underline z-100"
           >
             {item.label}
           </Link>
