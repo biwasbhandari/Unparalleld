@@ -26,22 +26,16 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-4">Quick Links</h3>
           <ul className="list-none">
             <li>
-              <Link href="#" className="text-blue-500">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/shop" className="text-blue-500">
-                Shop
-              </Link>
+              <Link href="/tshirts">Shop</Link>
             </li>
             <li>
-              <Link href="/about" className="text-blue-500">
-                About Us
-              </Link>
+              <Link href="/about">About Us</Link>
             </li>
             <li>
-              <Link href="/contact" className="text-blue-500">
+              <Link href="/contact">
                 <span>Contact us</span>
               </Link>
             </li>
@@ -49,7 +43,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-center mt-8 text-gray-600">
-        © {new Date().getFullYear()} YourStore. All rights reserved.
+        &copy; {new Date().getFullYear()} Unparalleld. All rights reserved.
       </p>
     </div>
   );

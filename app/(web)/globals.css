@@ -25,28 +25,6 @@
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
   }
-
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
 }
 body {
   scroll-behavior: smooth;
@@ -74,29 +52,18 @@ body {
   animation: fadeIn 2s ease-in-out forwards;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track - the area around the thumb */
-::-webkit-scrollbar-track {
-  background-color: #f5f5f5; /* Light grey */
-}
-
-/* Handle - the draggable scrolling handle */
-::-webkit-scrollbar-thumb {
-  background-color: #555; /* Dark grey */
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #333; /* Slightly darker grey on hover */
-}
-
 .img {
-  @apply object-contain w-full h-full;
+  @apply object-cover w-full h-full;
 }
 
 .scale-animation {
   @apply hover:scale-125 transition-all duration-700;
+}
+
+.font-heading {
+  @apply font-medium md:font-semibold md:text-6xl text-3xl;
+}
+
+.font-normal {
+  @apply text-sm md:text-base;
 }

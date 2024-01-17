@@ -1,13 +1,14 @@
 "use client";
-import { Image as ImageType } from "@/models/tshirt";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import Image from "next/image";
+
 import { FC, useState } from "react";
-import { Button } from "../ui/button";
-import { FcCancel } from "react-icons/fc";
+import Image from "next/image";
+
+import { Image as ImageType } from "@/models/tshirt";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 
 const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [currenPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
   const openModal = (index: number) => {
@@ -29,95 +30,111 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
     );
   };
 
-  const maximumVisible = 2;
+  const maximumVisiblePhotos = 4;
   const totalPhotos = photos.length;
-  const displayPhotos = photos.slice(1, maximumVisible - 1);
-  const remainingPhotos = totalPhotos - maximumVisible;
+  const displayPhotos = photos.slice(1, maximumVisiblePhotos - 1);
+  const remainingPhotosCount = totalPhotos - maximumVisiblePhotos;
 
   return (
     <div className="container mx-auto">
-      <div className="grid md:grid-cols-2 relative gap-5 px-3">
-        <div className="h-[540px] relative rounded-2xl overflow-hidden">
+      <div className="grid md:grid-cols-2  gap-5 px-3">
+        <div className="h-[540px]  rounded-2xl overflow-hidden">
           <div className="hidden md:flex justify-center items-center w-full h-full">
             <Image
               src={photos[0].url}
-              alt={`Tshirt Photos ${currentPhotoIndex + 1}`}
-              className="cursor-pointer"
-              width={150}
-              height={150}
-              onClick={() => openModal(0)}
+              alt={`Room Photo ${currenPhotoIndex + 1}`}
+              className="img  cursor-pointer"
+              width={500}
+              height={500}
+              onClick={openModal.bind(this, 0)}
             />
           </div>
           <div className="md:hidden flex justify-center items-center w-full h-full">
             <Image
-              src={photos[currentPhotoIndex].url}
-              alt={`Tshirt Photos ${currentPhotoIndex + 1}`}
-              width={150}
-              height={150}
-              onClick={() => openModal(0)}
+              src={photos[currenPhotoIndex].url}
+              alt={`Room Photo ${currenPhotoIndex + 1}`}
+              className="img"
+              width={500}
+              height={500}
+              onClick={openModal.bind(this, 0)}
             />
           </div>
         </div>
         <div className="md:hidden flex justify-between items-center">
           <div className="flex space-x-2">
-            <ArrowLeft className="cursor-pointer" onClick={handlePrevious} />
-            <ArrowRight className="cursor-pointer" onClick={handleNext} />
+            <FaArrowLeft className="cursor-pointer" onClick={handlePrevious} />
+            <FaArrowRight className="cursor-pointer" onClick={handleNext} />
           </div>
           <span>
-            {currentPhotoIndex + 1} / {photos.length}
+            {currenPhotoIndex + 1} / {photos.length}
           </span>
         </div>
+
         <div className="hidden md:grid grid-cols-2 h-full gap-5">
           {displayPhotos.map((photo, index) => (
-            <div key={index} className="cursor-pointer h-64">
+            <div
+              key={index}
+              className="cursor-pointer h-64 rounded-2xl overflow-hidden"
+            >
               <Image
-                width={150}
-                height={150}
+                width={500}
+                height={500}
                 src={photo.url}
-                alt={`Tshirt Photo ${index + 2}`}
+                alt={`Room Photo ${index + 2}`}
+                className="img "
               />
             </div>
           ))}
-          {remainingPhotos > 0 && (
+          {remainingPhotosCount > 0 && (
             <div
-              className="cursor-pointer relative h-64 rounded-2xl overflow-hidden"
-              onClick={() => openModal(maximumVisible)}
+              className="cursor-pointer  h-64 rounded-2xl overflow-hidden"
+              onClick={openModal.bind(this, maximumVisiblePhotos)}
             >
               <Image
-                src={photos[maximumVisible - 1].url}
-                alt={`Tshirt Photo ${maximumVisible}`}
-                width={150}
-                height={150}
+                width={500}
+                height={500}
+                src={photos[maximumVisiblePhotos - 1].url}
+                alt={`Room Photo ${maximumVisiblePhotos}`}
+                className="img"
               />
-              <div>+ {remainingPhotos}</div>
+              <div className="absolute cursor-pointer text-white inset-0 flex justify-center bg-[rgba(0,0,0,0.5)] items-center text-2xl">
+                + {remainingPhotosCount}
+              </div>
             </div>
           )}
         </div>
+
         {showModal && (
-          <div className="z-50 fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
-            <div className="h-3/4 w-full md:w-2/3 relative">
+          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-90 z-[55]">
+            <div className="h-[75vh] w-[320px] md:w-[700px] ">
               <Image
-                src={photos[currentPhotoIndex].url}
-                alt={`Room Photo ${currentPhotoIndex + 1}`}
-                width={150}
-                height={150}
-                priority
+                src={photos[currenPhotoIndex].url}
+                alt={`Room Photo ${currenPhotoIndex + 1}`}
+                width={500}
+                height={500}
+                className="object-contain w-full h-full"
               />
               <div className="flex justify-between items-center py-3">
-                <div className="flex space-x-2 items-center">
-                  <ArrowLeft
+                <div className="flex space-x-2 items-center text-white">
+                  <FaArrowLeft
                     className="cursor-pointer"
                     onClick={handlePrevious}
                   />
-                  <ArrowRight className="cursor-pointer" onClick={handleNext} />
+                  <FaArrowRight
+                    className="cursor-pointer"
+                    onClick={handleNext}
+                  />
                 </div>
-                <span>
-                  {currentPhotoIndex + 1} / {photos.length}
+                <span className="text-white text-sm">
+                  {currenPhotoIndex + 1} / {photos.length}
                 </span>
               </div>
-              <Button variant="destructive" onClick={closeModal}>
-                Cancel
-              </Button>
+              <button
+                className="absolute top-2 right-2 text-white text-lg"
+                onClick={closeModal}
+              >
+                <MdCancel className="font-medium text-2xl text-tertiary-dark" />
+              </button>
             </div>
           </div>
         )}

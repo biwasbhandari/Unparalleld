@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
       animate={{ y: scrollingDown ? -100 : 0 }}
       transition={{ duration: 0.6 }}
       className={clsx(
-        "flex justify-between px-8 items-center py-3 z-100 animate-fade-in font-normal bg-gray-100 ",
+        "flex justify-between px-8 items-center py-3 z-1000 animate-fade-in font-normal relative bg-gray-100",
         !scrollingDown && "sticky top-0"
       )}
     >
@@ -70,12 +70,12 @@ const Navbar: React.FC = () => {
         </section>
       </div>
 
-      <div className="flex-grow  items-center justify-center hidden lg:flex">
+      <div className="flex-grow items-center justify-center hidden lg:flex z-1000">
         {navlinks.map((item, index) => (
           <Link
             key={index}
             href={item.link}
-            className="lg:block mx-4 hover:underline z-100"
+            className="lg:block mx-4 hover:underline"
           >
             {item.label}
           </Link>
@@ -84,11 +84,11 @@ const Navbar: React.FC = () => {
 
       <div
         className={clsx(
-          "fixed h-full w-screen lg:hidden bg-black/50 backdrop-blur-sm top-0 right-0 -translate-x-full transition-all",
+          "fixed h-full w-screen lg:hidden bg-black/50 backdrop-blur-sm top-0 right-0 -translate-x-full transition-all z-1000",
           isSideMenuOpen && "translate-x-0"
         )}
       >
-        <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 z-50 w-56 flex">
+        <section className="text-black bg-white flex-col absolute left-0 top-0 h-screen p-8 gap-8 w-56 flex z-1000">
           <SidebarClose
             onClick={() => setMenu(false)}
             className="mt-0 mb-8 text-3xl cursor-pointer"
@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
         </section>
       </div>
 
-      <section className="flex items-center gap-4">
+      <section className="flex items-center gap-4 z-1000">
         <ShoppingBasket className="text-3xl" />
         {session ? (
           <Link href={`/users/${session.user.id}`}>

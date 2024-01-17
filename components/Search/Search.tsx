@@ -38,7 +38,7 @@ const Search: FC<Props> = ({
           <label className="block text-sm font-medium mb-2 text-black">
             Tshirt Size
           </label>
-          <div className="relative">
+          <div className="">
             <select
               className="w-full px-4 py-2 capitalize rounded leading-tight border"
               onChange={handleTshirtSizeChange}

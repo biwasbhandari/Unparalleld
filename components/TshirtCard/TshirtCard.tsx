@@ -14,21 +14,21 @@ const TshirtCard: FC<Props> = (props) => {
   } = props;
 
   return (
-    <div className="rounded-lg overflow-hidden shadow-lg bg-white w-full md:w-72 mx-auto mb-10 md:mx-0">
-      <div className="h-64 md:h-48 lg:h-64 overflow-hidden">
+    <div className="rounded-xl w-72 mb-10 mx-auto md:mx-0 overflow-hidden text-black">
+      <div className="h-60 overflow-hidden">
         <Image
           src={coverImage.url}
           alt={name}
           width={900}
           height={900}
-          className="img "
+          className="img"
           priority
         />
       </div>
       <div className="p-4">
-        <div className="flex flex-col justify-between text-xl font-semibold mb-2">
+        <div className="flex justify-between text-xl font-semibold">
           <p className="text-gray-800">{name}</p>
-          <p className="text-blue-600">Rs {price}</p>
+          <p className="text-black">Rs {price}</p>
         </div>
         <p className="text-xs text-gray-500">Size: {size}</p>
         <p className="mt-2 text-sm text-gray-700">
@@ -37,7 +37,7 @@ const TshirtCard: FC<Props> = (props) => {
         <Link href={`/tshirts/${slug.current}`}>
           <Button
             className={`mt-4 ${
-              isBooked ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500"
+              isBooked ? " cursor-not-allowed" : " md:w-full"
             }`}
             disabled={isBooked}
           >

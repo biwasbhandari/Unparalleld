@@ -66,7 +66,7 @@ const Tshirt = () => {
         setTshirtSizeFilter={setTshirtSizeFilter}
         setSearchQuery={setSearchQuery}
       />
-      <div className="flex t-20 justify-between flex-wrap">
+      <div className="flex justify-around flex-wrap p-3">
         {filteredTshirt.map((tshirt) => (
           <TshirtCard key={tshirt._id} tshirt={tshirt} />
         ))}

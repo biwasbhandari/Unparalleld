@@ -11,7 +11,7 @@ export default function Home() {
           #DRESSTOINTRIGUE
         </h1>
         <Button variant="link" className="flex items-center mt-4">
-          <Link href="/shop">Start Personalizing</Link>
+          <Link href="/tshirts">Start Personalizing</Link>
           <ArrowRight size={20} className="ml-2" />
         </Button>
       </div>
