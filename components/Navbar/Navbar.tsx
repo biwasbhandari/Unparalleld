@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   const navlinks: NavLink[] = [
     { label: "Home", link: "/" },
     { label: "About", link: "/about" },
-    { label: "Shop", link: "/shop" },
+    { label: "Shop", link: "/tshirts" },
   ];
 
   const closeSideMenu = () => {
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
         !scrollingDown && "sticky top-0"
       )}
     >
-      <div className="flex items-center gap-8 z-100">
+      <div className="flex items-center gap-8 z-1000">
         <section className="flex items-center gap-4">
           <MenuIcon
             onClick={() => setMenu(true)}

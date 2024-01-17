@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Tshirt } from "@/app/models/tshirt";
+import { Tshirt } from "@/models/tshirt";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -10,7 +10,7 @@ type Props = {
 
 const FeaturedTshirt: FC<Props> = ({ featuredTshirt }) => {
   return (
-    <section className="container mx-auto flex flex-col md:flex-row items-center gap-12 px-4 py-10">
+    <section className="container mx-auto flex flex-col md:flex-row items-center -z-30 gap-12 px-4 py-10">
       <div className="md:grid grid-cols-1 gap-8">
         <div className="rounded-2xl overflow-hidden h-48 mb-4 md:mb-0">
           <Image
@@ -18,15 +18,15 @@ const FeaturedTshirt: FC<Props> = ({ featuredTshirt }) => {
             alt={featuredTshirt.name}
             width={300}
             height={300}
-            className="img scale-animation cursor-pointer"
+            className="img scale-animation -z-50 cursor-pointer"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-8 h-48">
+        <div className="grid grid-cols-2 gap-8 h-50 ">
           {featuredTshirt.images.slice(1, 3).map((image) => (
-            <div key={image._key} className="rounded-2xl overflow-hidden">
+            <div key={image._key} className="rounded-2xl overflow-hidden ">
               <Image
-                src={image.url || image._ref}
+                src={image.url}
                 alt={image._key}
                 width={400}
                 height={400}
@@ -50,7 +50,7 @@ const FeaturedTshirt: FC<Props> = ({ featuredTshirt }) => {
             value={`Nrs ${featuredTshirt.discount}`}
           />
           <Button>
-            <Link href={`/rooms/${featuredTshirt.slug.current}`}>
+            <Link href={`/tshirts/${featuredTshirt.slug.current}`}>
               More Details
             </Link>
           </Button>

@@ -26,7 +26,6 @@ const Search: FC<Props> = ({
 
   const router = useRouter();
   const handleFilterSearch = () => {
-    // nvaigate to the tshirt page with the query
     router.push(
       `/tshirts?tshirtSize=${tshirtSizeFilter}&searchQuery=${searchQuery}`
     );
@@ -45,10 +44,11 @@ const Search: FC<Props> = ({
               onChange={handleTshirtSizeChange}
               value={tshirtSizeFilter}
             >
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-              <option value="xl">XL</option>
+              <option value="All">All</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
             </select>
           </div>
         </div>

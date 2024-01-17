@@ -94,7 +94,7 @@ body {
 }
 
 .img {
-  @apply object-cover w-full h-full;
+  @apply object-contain w-full h-full;
 }
 
 .scale-animation {
