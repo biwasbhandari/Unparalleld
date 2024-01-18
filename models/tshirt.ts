@@ -20,6 +20,18 @@ export type Tshirt = {
   name: string;
   price: number;
   slug: Slug;
-  specailMessage: string;
+  specailNote: string;
   size: string;
+};
+
+export type CreateOrdering = {
+  user: string;
+  tShirt: string;
+  checkinDate: string;
+  checkoutDate: string;
+  numberOfItems: number;
+  male: number;
+  female: number;
+  totalPrice: number;
+  discount: number;
 };

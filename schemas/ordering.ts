@@ -1,8 +1,8 @@
 import { defineField } from "sanity";
 
-const order = {
-  name: "order",
-  title: "Order",
+const ordering = {
+  name: "ordering",
+  title: "Ordering",
   type: "document",
   fields: [
     defineField({
@@ -14,21 +14,26 @@ const order = {
     }),
     defineField({
       name: "tShirt",
-      title: "TShirt",
+      title: "T Shirt",
       type: "reference",
       to: [{ type: "tShirt" }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "orderDate",
-      title: "Order Date",
+      name: "checkinDate",
+      title: "Check-in Date",
       type: "date",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
-      name: "numberOfPieces",
-      title: "Number Of pieces",
+      name: "checkoutDate",
+      title: "Check-out Date",
+      type: "date",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "numberOfItems",
+      title: "Number Of Items",
       type: "number",
       initialValue: 1,
       validation: (Rule) => Rule.required().min(1),
@@ -36,6 +41,20 @@ const order = {
     defineField({
       name: "discount",
       title: "Discount",
+      type: "number",
+      initialValue: 0,
+      validation: (Rule) => Rule.required().min(0),
+    }),
+    defineField({
+      name: "male",
+      title: "Male",
+      type: "number",
+      initialValue: 1,
+      validation: (Rule) => Rule.required().min(1),
+    }),
+    defineField({
+      name: "female",
+      title: "Female",
       type: "number",
       initialValue: 0,
       validation: (Rule) => Rule.required().min(0),
@@ -49,4 +68,4 @@ const order = {
   ],
 };
 
-export default order;
+export default ordering;

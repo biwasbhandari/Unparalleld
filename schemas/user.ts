@@ -1,4 +1,5 @@
 import { defineField } from "sanity";
+
 const user = {
   name: "user",
   title: "user",
@@ -8,10 +9,11 @@ const user = {
       name: "isAdmin",
       title: "Is Admin",
       type: "boolean",
-      description: "Check If the user is already admin",
+      description: "Check if the user is admin",
       initialValue: false,
       validation: (Rule) => Rule.required(),
       //   readOnly: true,
+      //   hidden: true,
     }),
     defineField({
       name: "name",
@@ -45,7 +47,7 @@ const user = {
       name: "about",
       title: "About",
       type: "text",
-      description: "A brief description about User",
+      description: "A brief dsecription about the user",
     }),
   ],
 };

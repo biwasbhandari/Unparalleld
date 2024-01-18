@@ -1,14 +1,14 @@
 import { defineField } from "sanity";
 
-const tshirtSize = [
-  { title: "S", value: "s" },
-  { title: "M", value: "m" },
+const shirtSize = [
+  { title: "X", value: "x" },
   { title: "L", value: "l" },
   { title: "XL", value: "xl" },
 ];
+
 const tShirt = {
   name: "tShirt",
-  title: "T-shirt",
+  title: "T Shirt",
   type: "document",
   fields: [
     defineField({
@@ -16,9 +16,8 @@ const tShirt = {
       title: "Name",
       type: "string",
       validation: (Rule) =>
-        Rule.required().max(50).error("Maximum 50 characters"),
+        Rule.required().max(50).error("Maximum 50 Characters"),
     }),
-
     defineField({
       name: "slug",
       type: "slug",
@@ -27,32 +26,30 @@ const tShirt = {
       },
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "description",
       title: "Description",
       type: "text",
       validation: (Rule) =>
-        Rule.required().min(100).error("Minimum 100 characters"),
+        Rule.required().min(100).error("Minimum 100 Characters"),
     }),
-
     defineField({
       name: "price",
       title: "Price",
       type: "number",
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().min(100).error("Minimum 100 Characters"),
     }),
-
     defineField({
       name: "discount",
       title: "Discount",
       type: "number",
+      initialValue: 0,
       validation: (Rule) => Rule.min(0),
     }),
-
     defineField({
       name: "images",
-      title: "Image",
+      title: "Images",
       type: "array",
       of: [
         {
@@ -64,9 +61,8 @@ const tShirt = {
         },
       ],
       validation: (Rule) =>
-        Rule.required().min(2).error("Minimum of 2 images required"),
+        Rule.required().min(3).error("Minimum of 3 images required"),
     }),
-
     defineField({
       name: "coverImage",
       title: "Cover Image",
@@ -79,21 +75,25 @@ const tShirt = {
     }),
     defineField({
       name: "size",
-      title: "Tshirt Size",
+      title: "Shirt Size",
       type: "string",
       options: {
-        list: tshirtSize,
+        list: shirtSize,
       },
       validation: (Rule) => Rule.required(),
-      initialValue: "s",
+      initialValue: "x",
     }),
-
     defineField({
-      name: "specialMessage",
-      title: "Special Message",
-      type: "string",
+      name: "specialNote",
+      title: "Special Note",
+      type: "text",
       validation: (Rule) => Rule.required(),
-      initialValue: "Thank you for purchasing the product",
+      initialValue: "Get Premium Product",
+    }),
+    defineField({
+      name: "colour",
+      title: "Colour",
+      type: "string",
     }),
 
     defineField({
@@ -102,16 +102,14 @@ const tShirt = {
       type: "boolean",
       initialValue: false,
     }),
-
     defineField({
       name: "isFeatured",
       title: "Is Featured",
       type: "boolean",
       initialValue: false,
     }),
-
     defineField({
-      name: "review",
+      name: "reviews",
       title: "Reviews",
       type: "array",
       of: [{ type: "review" }],

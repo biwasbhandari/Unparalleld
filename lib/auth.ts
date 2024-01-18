@@ -17,11 +17,9 @@ export const authOptions: NextAuthOptions = {
     }),
     SanityCredentials(sanityClient),
   ],
-
   session: {
     strategy: "jwt",
   },
-
   adapter: SanityAdapter(sanityClient),
   debug: process.env.NODE_ENV === "development",
   secret: process.env.NEXTAUTH_SECRET,

@@ -1,4 +1,5 @@
 import { groq } from "next-sanity";
+
 export const getFeaturedTshirtQuery = groq`*[_type == "tShirt" && isFeatured == true][0] {
     _id,
     description,
@@ -13,29 +14,66 @@ export const getFeaturedTshirtQuery = groq`*[_type == "tShirt" && isFeatured == 
 
 export const getTshirtsQuery = groq`*[_type == 'tShirt']{
     _id,
+    coverImage,
     description,
-    discount,
-    images,
+    colour,
+    isBooked,
+    isFeatured,
     name,
     price,
     slug,
-    coverImage,
     size,
-    isBooked,
-    isFeatured,
 }`;
 
 export const getTshirt = groq`*[_type == "tShirt" && slug.current == $slug][0]{
     _id,
-    name,
     coverImage,
     description,
+    colour,
     discount,
     images,
     isBooked,
     isFeatured,
-    size,
+    name,
     price,
     slug,
-    specialMessage,
+    specialNote,
+    size,
+}`;
+
+export const getUserOrderingsQuery = groq`*[_type == 'ordering' && user._ref == $userId] {
+    _id,
+    tShirt -> {
+        _id,
+        name,
+        slug,
+        price
+    },
+    checkinDate,
+    checkoutDate,
+    numberOfItems,
+    male,
+    female,
+    totalPrice,
+    discount
+}`;
+
+export const getUserDataQuery = groq`*[_type == 'user' && _id == $userId][0] {
+    _id,
+    name,
+    email,
+    isAdmin,
+    about,
+    _createdAt,
+    image,
+}`;
+
+export const getTshirtReviewsQuery = groq`*[_type == "review" && tShirt._ref == $tshirtId] {
+    _createdAt,
+    _id,
+    text,
+    user -> {
+        name
+    },
+    userRating
 }`;
