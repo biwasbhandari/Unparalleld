@@ -5,28 +5,30 @@ import useSWR from "swr";
 import { Review } from "@/models/review";
 import Rating from "../Rating/Rating";
 
-const RoomReview: FC<{ tshirtId: string }> = ({ tshirtId }) => {
-  const fetchRoomReviews = async () => {
-    const { data } = await axios.get<Review[]>(`/api/room-reviews/${tshirtId}`);
+const TshirtReview: FC<{ tshirtId: string }> = ({ tshirtId }) => {
+  const fetchTshirtReviews = async () => {
+    const { data } = await axios.get<Review[]>(
+      `/api/tshirt-reviews/${tshirtId}`
+    );
     return data;
   };
 
   const {
-    data: roomReviews,
+    data: tshirtReviews,
     error,
     isLoading,
-  } = useSWR("/api/room-reviews", fetchRoomReviews);
+  } = useSWR("/api/tshirt-reviews", fetchTshirtReviews);
 
   if (error) throw new Error("Cannot fetch data");
-  if (typeof roomReviews === "undefined" && !isLoading)
+  if (typeof tshirtReviews === "undefined" && !isLoading)
     throw new Error("Cannot fetch data");
 
-  console.log(roomReviews);
+  console.log(tshirtReviews);
 
   return (
     <>
-      {roomReviews &&
-        roomReviews.map((review) => (
+      {tshirtReviews &&
+        tshirtReviews.map((review) => (
           <div
             className="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg"
             key={review._id}
@@ -45,4 +47,4 @@ const RoomReview: FC<{ tshirtId: string }> = ({ tshirtId }) => {
   );
 };
 
-export default RoomReview;
+export default TshirtReview;

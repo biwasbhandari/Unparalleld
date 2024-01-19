@@ -5,12 +5,12 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const roomId = params.id;
+  const tshirtId = params.id;
 
   try {
-    const roomReviews = await getTshirtReviews(roomId);
+    const tshirtReviews = await getTshirtReviews(tshirtId);
 
-    return NextResponse.json(roomReviews, {
+    return NextResponse.json(tshirtReviews, {
       status: 200,
       statusText: "Succesful",
     });

@@ -8,7 +8,7 @@ const shirtSize = [
 
 const tShirt = {
   name: "tShirt",
-  title: "T Shirt",
+  title: "TShirt",
   type: "document",
   fields: [
     defineField({
@@ -89,11 +89,6 @@ const tShirt = {
       type: "text",
       validation: (Rule) => Rule.required(),
       initialValue: "Get Premium Product",
-    }),
-    defineField({
-      name: "colour",
-      title: "Colour",
-      type: "string",
     }),
 
     defineField({

@@ -28,7 +28,7 @@ export const options = {
 };
 
 const Chart: FC<{ userOrderings: Ordering[] }> = ({ userOrderings }) => {
-  const labels = userOrderings.map((ordering) => ordering.hotelRoom.name);
+  const labels = userOrderings.map((ordering) => ordering.tShirt.name);
   const amountSpent = userOrderings.map((ordering) => ordering.totalPrice);
 
   return (
