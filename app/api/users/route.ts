@@ -41,10 +41,9 @@ export async function POST(req: Request, res: Response) {
   const userId = session.user.id;
 
   try {
+    // check if review already exist
     const alreadyExists = await checkReviewExists(userId, tshirtId);
-
     let data;
-
     if (alreadyExists) {
       data = await updateReview({
         reviewId: alreadyExists._id,

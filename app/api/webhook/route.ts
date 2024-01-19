@@ -48,6 +48,7 @@ export async function POST(req: Request, res: Response) {
           totalPrice,
         },
       } = session;
+      console.log("SESSION", session);
 
       await createOrdering({
         male: Number(male),

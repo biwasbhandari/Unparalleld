@@ -27,7 +27,7 @@ const Table: FC<Props> = ({
             <th className="px-6 py-3">Unit Price</th>
             <th className="px-6 py-3">Price</th>
             <th className="px-6 py-3">Discount</th>
-            {/* <th className="px-6 py-3">No. of Items Orderd</th> */}
+            <th className="px-6 py-3">No. of Items Orderd</th>
             <th className="px-6 py-3"></th>
           </tr>
         </thead>
@@ -47,8 +47,10 @@ const Table: FC<Props> = ({
               </th>
               <td className="px-6 py-4">{ordering.tShirt.price}</td>
               <td className="px-6 py-4">{ordering.totalPrice}</td>
-              <td className="px-6 py-4">{ordering.discount}</td>
-              <td className="px-6 py-4">0</td>
+              <td className="px-6 py-4">{ordering.discount}'%'</td>
+              <td className="px-6 py-4">
+                {ordering.male} male + {ordering.female} female
+              </td>
               <td className="px-6 py-4">
                 <button
                   onClick={() => {

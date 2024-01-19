@@ -179,7 +179,7 @@ export const createReview = async ({
             _type: "reference",
             _ref: userId,
           },
-          hotelRoom: {
+          tShirt: {
             _type: "reference",
             _ref: tShirtId,
           },
