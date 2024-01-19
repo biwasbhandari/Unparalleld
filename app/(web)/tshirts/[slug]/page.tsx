@@ -9,6 +9,7 @@ import BookTshirtCta from "@/components/BookTshirtCta/BookTshirtCta";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { getStripe } from "@/lib/stripe";
+import TshirtReview from "@/components/TshirtReview/TshirtReview";
 
 const TshirtDetails = (props: { params: { slug: string } }) => {
   const {
@@ -103,7 +104,7 @@ const TshirtDetails = (props: { params: { slug: string } }) => {
                   <p className="md:text-lg font-semibold">Customer Reviews</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Tshirt Review */}
+                  <TshirtReview tshirtId={tshirt._id} />
                 </div>
               </div>
             </div>

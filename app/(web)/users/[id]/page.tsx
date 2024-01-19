@@ -1,4 +1,5 @@
 "use client";
+
 import useSWR from "swr";
 import { FaSignOutAlt } from "react-icons/fa";
 import Image from "next/image";
@@ -15,7 +16,7 @@ import Chart from "@/components/Chart/Chart";
 import RatingModal from "@/components/RatingModal/RatingModal";
 import BackDrop from "@/components/BackDrop/BackDrop";
 import toast from "react-hot-toast";
-import LoadinSpinner from "../../loading";
+
 import { UserIcon } from "lucide-react";
 
 const UserDetails = (props: { params: { id: string } }) => {

@@ -1,14 +1,14 @@
 "use client";
 
-import Search from "@/components/Search/Search";
-import TshirtCard from "@/components/TshirtCard/TshirtCard";
-import { getTshirts } from "@/lib/apis";
-import { Tshirt } from "@/models/tshirt";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import { getTshirts } from "@/lib/apis";
+import { Tshirt } from "@/models/tshirt";
+import Search from "@/components/Search/Search";
+import TshirtCard from "@/components/TshirtCard/TshirtCard";
 
-const Tshirt = () => {
+const Tshirts = () => {
   const [tshirtSizeFilter, setTshirtSizeFilter] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const searchParams = useSearchParams();
@@ -25,7 +25,7 @@ const Tshirt = () => {
     return getTshirts();
   }
 
-  const { data, error, isLoading } = useSWR("get/tshirtSize", fetchData);
+  const { data, error, isLoading } = useSWR("get/tshirtSizes", fetchData);
 
   if (error) throw new Error("Cannot fetch data");
   if (typeof data === "undefined" && !isLoading)
@@ -74,4 +74,4 @@ const Tshirt = () => {
     </div>
   );
 };
-export default Tshirt;
+export default Tshirts;
