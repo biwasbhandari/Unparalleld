@@ -15,6 +15,8 @@ import Chart from "@/components/Chart/Chart";
 import RatingModal from "@/components/RatingModal/RatingModal";
 import BackDrop from "@/components/BackDrop/BackDrop";
 import toast from "react-hot-toast";
+import LoadinSpinner from "../../loading";
+import { UserIcon } from "lucide-react";
 
 const UserDetails = (props: { params: { id: string } }) => {
   const {
@@ -90,18 +92,22 @@ const UserDetails = (props: { params: { id: string } }) => {
   if (!userData) throw new Error("Cannot fetch data");
 
   return (
-    <div className="container mx-auto px-2 md:px-4 py10">
+    <div className="container mx-auto px-2 md:px-4 py10 min-h-screen items-center flex">
       <div className="grid md:grid-cols-12 gap-10">
         <div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4">
-          <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
-            <Image
-              src={userData.image}
-              alt={userData.name}
-              width={143}
-              height={143}
-              className="img scale-animation rounded-full"
-            />
-          </div>
+          {userData.image ? (
+            <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
+              <Image
+                src={userData.image}
+                alt={userData.name}
+                width={143}
+                height={143}
+                className="img scale-animation rounded-full"
+              />
+            </div>
+          ) : (
+            <UserIcon />
+          )}
           <div className="font-normal py-4 text-left">
             <h6 className="text-xl font-bold pb-3">About</h6>
             <p className="text-sm">{userData.about ?? ""}</p>
@@ -221,16 +227,42 @@ export default UserDetails;
 //     params: { id: userId },
 //   } = props;
 //   const fetchUserOrdering = async () => getUserOrderings(userId);
+//   const fetchUserData = async () => {
+//     const { data } = await axios.get<User>("/api/users");
+//     return data;
+//   };
 //   const {
 //     data: userOrderings,
 //     error,
 //     isLoading,
 //   } = useSWR("/api/userordering", fetchUserOrdering);
 
-//   if (error) throw new Error("Cannot fetch data");
+//   const {
+//     data: userData,
+//     isLoading: loadingUserData,
+//     error: errorGettingUserData,
+//   } = useSWR("/api/users", fetchUserData);
+
+//   if (error || errorGettingUserData) throw new Error("Cannot fetch data");
 //   if (typeof userOrderings === "undefined" && !isLoading)
 //     throw new Error("cannot fetch data");
-//   console.log(userOrderings);
-//   return <div>page</div>;
+
+//   if (error || errorGettingUserData) throw new Error("Cannot fetch data");
+//   if (typeof userData === "undefined" && !loadingUserData)
+//     throw new Error("cannot fetch data");
+
+//   if (loadingUserData) return <LoadinSpinner />;
+//   if (!userData) throw new Error("Cannot fetch data");
+
+//   return (
+//     <div className="container mx-auto px-2 md:px-4 py10">
+//       <div className="grid md:grid-cols-12 gap-10">Hello, {userData.name}</div>
+//       <div>
+//         {userData.image? <div>
+
+//           </div>: ''}
+//       </div>
+//     </div>
+//   );
 // };
 // export default UserDetails;
