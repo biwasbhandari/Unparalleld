@@ -28,7 +28,7 @@ const TshirtCard: FC<Props> = (props) => {
       <div className="p-4">
         <div className="flex justify-between text-xl font-semibold">
           <p className="text-gray-800">{name}</p>
-          <p className="text-black">Rs {price}</p>
+          <p className="text-black">${price}</p>
         </div>
         <p className="text-xs text-gray-500">Size: {size}</p>
         <p className="mt-2 text-sm text-gray-700">

@@ -1,11 +1,9 @@
 "use client";
-
 import useSWR from "swr";
 import { FaSignOutAlt } from "react-icons/fa";
 import Image from "next/image";
 import axios from "axios";
 import { signOut } from "next-auth/react";
-
 import { getUserOrderings } from "@/lib/apis";
 import { User } from "@/models/user";
 import LoadingSpinner from "../../loading";
@@ -63,7 +61,7 @@ const UserDetails = (props: { params: { id: string } }) => {
     }
   };
 
-  const fetchUserOrderings = async () => getUserOrderings(userId);
+  const fetchUserOrdering = async () => getUserOrderings(userId);
   const fetchUserData = async () => {
     const { data } = await axios.get<User>("/api/users");
     return data;
@@ -73,7 +71,7 @@ const UserDetails = (props: { params: { id: string } }) => {
     data: userOrderings,
     error,
     isLoading,
-  } = useSWR("/api/userordering", fetchUserOrderings);
+  } = useSWR("/api/userordering", fetchUserOrdering);
 
   const {
     data: userData,
@@ -217,3 +215,22 @@ const UserDetails = (props: { params: { id: string } }) => {
 };
 
 export default UserDetails;
+
+// const UserDetails = (props: { params: { id: string } }) => {
+//   const {
+//     params: { id: userId },
+//   } = props;
+//   const fetchUserOrdering = async () => getUserOrderings(userId);
+//   const {
+//     data: userOrderings,
+//     error,
+//     isLoading,
+//   } = useSWR("/api/userordering", fetchUserOrdering);
+
+//   if (error) throw new Error("Cannot fetch data");
+//   if (typeof userOrderings === "undefined" && !isLoading)
+//     throw new Error("cannot fetch data");
+//   console.log(userOrderings);
+//   return <div>page</div>;
+// };
+// export default UserDetails;

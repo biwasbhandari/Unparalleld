@@ -51,7 +51,6 @@ export const getUserOrderingsQuery = groq`*[_type == 'ordering' && user._ref == 
     },
     checkinDate,
     checkoutDate,
-    numberOfItems,
     male,
     female,
     totalPrice,

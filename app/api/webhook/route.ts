@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createOrdering, updateTShirt } from "../../../lib/apis";
+import { createOrdering, updateTShirt } from "@/lib/apis";
 
 const checkout_session_completed = "checkout.session.completed";
 
@@ -26,18 +26,25 @@ export async function POST(req: Request, res: Response) {
   switch (event.type) {
     case checkout_session_completed:
       const session = event.data.object;
-
       const {
-        // @ts-ignore
         metadata: {
+          // @ts-ignore
           male,
+          // @ts-ignore
           checkinDate,
+          // @ts-ignore
           checkoutDate,
+          // @ts-ignore
           female,
+          // @ts-ignore
           tShirt,
+          // @ts-ignore
           numberOfItems,
+          // @ts-ignore
           user,
+          // @ts-ignore
           discount,
+          // @ts-ignore
           totalPrice,
         },
       } = session;
@@ -54,12 +61,12 @@ export async function POST(req: Request, res: Response) {
         user,
       });
 
-      //   Update hotel Room
+      //   Update Tshirt
       await updateTShirt(tShirt);
 
-      return NextResponse.json("Booking successful", {
+      return NextResponse.json("Order successful", {
         status: 200,
-        statusText: "Booking Successful",
+        statusText: "Order Successful",
       });
 
     default:

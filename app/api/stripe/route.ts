@@ -14,21 +14,15 @@ type RequestData = {
   checkoutDate: string;
   male: number;
   female: number;
-  numberOfItems: number;
+
   tShirtSlug: string;
 };
 
 export async function POST(req: Request, res: Response) {
-  const {
-    checkinDate,
-    male,
-    checkoutDate,
-    female,
-    tShirtSlug,
-    numberOfItems,
-  }: RequestData = await req.json();
+  const { checkinDate, male, checkoutDate, female, tShirtSlug }: RequestData =
+    await req.json();
 
-  if (!checkinDate || !checkoutDate || !male || !tShirtSlug || !numberOfItems) {
+  if (!checkinDate || !checkoutDate || !male || !tShirtSlug) {
     return new NextResponse("Please all fields are required", { status: 400 });
   }
 
@@ -47,9 +41,8 @@ export async function POST(req: Request, res: Response) {
   try {
     const tshirt = await getTshirt(tShirtSlug);
     const discountPrice = tshirt.price - (tshirt.price / 100) * tshirt.discount;
-    const totalPrice = discountPrice * numberOfItems;
+    const totalPrice = discountPrice * (male + female);
 
-    // Create a stripe payment
     const stripeSession = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [
@@ -65,6 +58,7 @@ export async function POST(req: Request, res: Response) {
           },
         },
       ],
+
       payment_method_types: ["card"],
       success_url: `${origin}/users/${userId}`,
       metadata: {
@@ -73,7 +67,6 @@ export async function POST(req: Request, res: Response) {
         checkoutDate: formattedCheckoutDate,
         female,
         tShirt: tshirt._id,
-        numberOfItems,
         user: userId,
         discount: tshirt.discount,
         totalPrice,

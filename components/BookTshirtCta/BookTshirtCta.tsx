@@ -39,7 +39,7 @@ const BookRoomCta: FC<Props> = (props) => {
     handleBookNowClick,
   } = props;
 
-  const discountPrice = price - (price / 100) * discount;
+  const discountPrice = Math.floor(price - (price / 100) * discount);
 
   const calcNoofItems = () => {
     return male + female;
@@ -74,7 +74,7 @@ const BookRoomCta: FC<Props> = (props) => {
             htmlFor="check-in-date"
             className="block text-sm font-medium text-gray-900 dark:text-gray-400"
           >
-            Check In date
+            Order Date
           </label>
           <DatePicker
             selected={checkinDate}
@@ -90,7 +90,7 @@ const BookRoomCta: FC<Props> = (props) => {
             htmlFor="check-out-date"
             className="block text-sm font-medium text-gray-900 dark:text-gray-400"
           >
-            Check Out date
+            Receiving Date
           </label>
           <DatePicker
             selected={checkoutDate}

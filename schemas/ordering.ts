@@ -21,23 +21,17 @@ const ordering = {
     }),
     defineField({
       name: "checkinDate",
-      title: "Check-in Date",
+      title: "Order Date",
       type: "date",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "checkoutDate",
-      title: "Check-out Date",
+      title: "Receiving Date",
       type: "date",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: "numberOfItems",
-      title: "Number Of Items",
-      type: "number",
-      initialValue: 1,
-      validation: (Rule) => Rule.required().min(1),
-    }),
+
     defineField({
       name: "discount",
       title: "Discount",

@@ -43,7 +43,7 @@ export const createOrdering = async ({
   female,
   discount,
   tShirt,
-  numberOfItems,
+
   totalPrice,
   user,
 }: CreateOrdering) => {
@@ -53,10 +53,9 @@ export const createOrdering = async ({
         create: {
           _type: "ordering",
           user: { _type: "reference", _ref: user },
-          hotelRoom: { _type: "reference", _ref: tShirt },
+          tShirt: { _type: "reference", _ref: tShirt },
           checkinDate,
           checkoutDate,
-          numberOfItems,
           male,
           female,
           totalPrice,
@@ -94,7 +93,6 @@ export const updateTShirt = async (tShirtId: string) => {
     mutation,
     { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
   );
-
   return data;
 };
 
