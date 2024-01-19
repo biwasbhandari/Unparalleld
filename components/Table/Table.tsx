@@ -27,8 +27,7 @@ const Table: FC<Props> = ({
             <th className="px-6 py-3">Unit Price</th>
             <th className="px-6 py-3">Price</th>
             <th className="px-6 py-3">Discount</th>
-            <th className="px-6 py-3">No. Items Orderd</th>
-            <th className="px-6 py-3">Items Left</th>
+            {/* <th className="px-6 py-3">No. of Items Orderd</th> */}
             <th className="px-6 py-3"></th>
           </tr>
         </thead>
@@ -36,11 +35,11 @@ const Table: FC<Props> = ({
           {orderingDetails.map((ordering) => (
             <tr
               key={ordering._id}
-              className="bg-white border-b hover:bg-gray-50"
+              className="bg-white border-b hover:bg-gray-50 text-black"
             >
               <th
                 onClick={() =>
-                  router.push(`/rooms/${ordering.tShirt.slug.current}`)
+                  router.push(`/tshirts/${ordering.tShirt.slug.current}`)
                 }
                 className="px-6 underline text-blue-600 cursor-pointer py-4 font-medium whitespace-nowrap"
               >
@@ -49,7 +48,6 @@ const Table: FC<Props> = ({
               <td className="px-6 py-4">{ordering.tShirt.price}</td>
               <td className="px-6 py-4">{ordering.totalPrice}</td>
               <td className="px-6 py-4">{ordering.discount}</td>
-              <td className="px-6 py-4">{ordering.numberOfItems}</td>
               <td className="px-6 py-4">0</td>
               <td className="px-6 py-4">
                 <button
