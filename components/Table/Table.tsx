@@ -47,7 +47,7 @@ const Table: FC<Props> = ({
               </th>
               <td className="px-6 py-4">{ordering.tShirt.price}</td>
               <td className="px-6 py-4">{ordering.totalPrice}</td>
-              <td className="px-6 py-4">{ordering.discount}'%'</td>
+              <td className="px-6 py-4">{ordering.discount}%</td>
               <td className="px-6 py-4">
                 {ordering.male} male + {ordering.female} female
               </td>
