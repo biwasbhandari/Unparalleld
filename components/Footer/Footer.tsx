@@ -1,4 +1,4 @@
-import { InstagramIcon, TwitterIcon } from "lucide-react";
+import { GithubIcon, InstagramIcon, TwitterIcon } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
@@ -34,17 +34,25 @@ const Footer = () => {
             <li>
               <Link href="/about">About Us</Link>
             </li>
-            <li>
-              <Link href="/contact">
-                <span>Contact us</span>
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
-      <p className="text-center mt-8 text-gray-600">
-        &copy; {new Date().getFullYear()} Unparalleld. All rights reserved.
-      </p>
+      <div className="flex justify-around">
+        <p className="text-center mt-8 text-gray-600">
+          &copy; {new Date().getFullYear()} Unparalleld. All rights reserved.
+        </p>
+        <p className="flex flex-col justify-center items-center">
+          <span className="font-semibold">Powered by:</span>
+          <Link
+            href="https:github.com/s-biwas"
+            className="flex justify-center items-center hover:underline"
+            target="_blank"
+          >
+            <GithubIcon />
+            Biwas Bhandari
+          </Link>{" "}
+        </p>
+      </div>
     </div>
   );
 };

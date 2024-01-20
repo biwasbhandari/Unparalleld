@@ -33,7 +33,7 @@ const Search: FC<Props> = ({
 
   return (
     <section className="px-4 py-6 rounded-lg">
-      <div className="conatiner mx-auto flex gap-4 flex-wrap justify-between items-center">
+      <div className="conatiner mx-auto flex gap-4 flex-wrap justify-around items-center">
         <div className="w-full md:1/3 lg:w-auto mb-4 md:mb-0">
           <label className="block text-sm font-medium mb-2 text-black">
             Tshirt Size
@@ -62,9 +62,9 @@ const Search: FC<Props> = ({
             onChange={handleSearchQuery}
           />
         </div>
-        <Button variant="outline" onClick={handleFilterSearch}>
+        {/* <Button variant="outline" onClick={handleFilterSearch}>
           Search
-        </Button>
+        </Button> */}
       </div>
     </section>
   );

@@ -1,52 +1,34 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
-
+import Link from "next/link";
 function Slider() {
   const slides = [
-    {
-      url: "/p01.jpg",
-    },
-    {
-      url: "/p02.jpg",
-    },
-    {
-      url: "/p03.jpg",
-    },
-    {
-      url: "/p04.jpg",
-    },
+    { url: "/p01.png" },
+    { url: "/p02.png" },
+    { url: "/p03.png" },
+    { url: "/p04.png" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToSlide = (slideIndex: any) => {
-    setCurrentIndex(slideIndex);
-  };
-
   const intervalRef: any = useRef(null);
+
+  const prevSlide = () =>
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    );
+  const nextSlide = () =>
+    setCurrentIndex((prevIndex) =>
+      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+    );
+  const goToSlide = (slideIndex: any) => setCurrentIndex(slideIndex);
 
   const autoSlide = () => {
     if (intervalRef.current !== null) {
       clearInterval(intervalRef.current);
     }
 
-    intervalRef.current = setInterval(() => {
-      nextSlide();
-    }, 3000);
+    intervalRef.current = setInterval(nextSlide, 4000);
   };
 
   useEffect(() => {
@@ -60,23 +42,18 @@ function Slider() {
   }, [currentIndex]);
 
   return (
-    <div className="max-w-full mx-auto relative group">
-      <div className="overflow-hidden flex items-center justify-center">
-        <Image
-          src={slides[currentIndex].url}
-          alt={`Slide ${currentIndex + 1}`}
-          width={1000}
-          height={1000}
-          className="img"
-          priority
-        />
-      </div>
-
-      <div className="hidden sm:group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <ArrowLeft onClick={prevSlide} size={30} />
-      </div>
-      <div className="hidden sm:group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <ArrowRight onClick={nextSlide} size={30} />
+    <div className="flex flex-col items-center max-w-full mx-auto h-[70vh] md:h-[90vh] bg-gray-100 hover:bg-gray-200 transition-colors">
+      <div className="flex-1 overflow-hidden">
+        <Link href={`/tshirts`}>
+          <Image
+            src={slides[currentIndex].url}
+            alt={`Slide ${currentIndex + 1}`}
+            className="img "
+            height={900}
+            width={900}
+            priority
+          />
+        </Link>
       </div>
     </div>
   );

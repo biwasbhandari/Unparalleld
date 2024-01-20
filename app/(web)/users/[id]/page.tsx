@@ -18,6 +18,7 @@ import BackDrop from "@/components/BackDrop/BackDrop";
 import toast from "react-hot-toast";
 
 import { UserIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const UserDetails = (props: { params: { id: string } }) => {
   const {
@@ -89,12 +90,11 @@ const UserDetails = (props: { params: { id: string } }) => {
 
   if (loadingUserData) return <LoadingSpinner />;
   if (!userData) throw new Error("Cannot fetch data");
-  if (!userData) throw new Error("Cannot fetch data");
 
   return (
-    <div className="container mx-auto px-2 md:px-4 py10 min-h-screen items-center flex">
-      <div className="grid md:grid-cols-12 gap-10">
-        <div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4">
+    <div className="min-h-screen w-[95%] md:w-3/4 flex flex-row flex-wrap items-center justify-center mx-auto">
+      <div className="grid md:grid-cols-12 gap-10 w-3/4">
+        <div className="md:col-span-4 lg:col-span-3 shadow-sm bg-[#eff0f2] text-black rounded-lg px-6 py-4">
           {userData.image ? (
             <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
               <Image
@@ -116,11 +116,10 @@ const UserDetails = (props: { params: { id: string } }) => {
             <h6 className="text-xl font-bold pb-3">{userData.name}</h6>
           </div>
           <div className="flex items-center">
-            <p className="mr-2">Sign Out</p>
-            <FaSignOutAlt
-              className="text-3xl cursor-pointer"
-              onClick={() => signOut({ callbackUrl: "/" })}
-            />
+            <Button onClick={() => signOut({ callbackUrl: "/" })}>
+              <p className="mr-2">Sign Out</p>
+              <FaSignOutAlt />
+            </Button>
           </div>
         </div>
 
@@ -129,13 +128,19 @@ const UserDetails = (props: { params: { id: string } }) => {
             <h5 className="text-2xl font-bold mr-3">Hello, {userData.name}</h5>
           </div>
           <div className="md:hidden w-14 h-14 rounded-l-full overflow-hidden">
-            <Image
-              className="img scale-animation rounded-full"
-              width={56}
-              height={56}
-              src={userData.image}
-              alt="User  Name"
-            />
+            {userData.image ? (
+              <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
+                <Image
+                  src={userData.image}
+                  alt={userData.name}
+                  width={143}
+                  height={143}
+                  className="img scale-animation rounded-full"
+                />
+              </div>
+            ) : (
+              <UserIcon />
+            )}
           </div>
           <p className="block w-fit md:hidden text-sm py-2">
             {userData.about ?? ""}
@@ -185,22 +190,16 @@ const UserDetails = (props: { params: { id: string } }) => {
             </ol>
           </nav>
 
-          {currentNav === "orderings" ? (
-            userOrderings && (
-              <Table
-                orderingDetails={userOrderings}
-                setTshirtId={setTshirtId}
-                toggleRatingModal={toggleRatingModal}
-              />
-            )
-          ) : (
-            <></>
+          {currentNav === "orderings" && userOrderings && (
+            <Table
+              orderingDetails={userOrderings}
+              setTshirtId={setTshirtId}
+              toggleRatingModal={toggleRatingModal}
+            />
           )}
 
-          {currentNav === "amount" ? (
-            userOrderings && <Chart userOrderings={userOrderings} />
-          ) : (
-            <></>
+          {currentNav === "amount" && userOrderings && (
+            <Chart userOrderings={userOrderings} />
           )}
         </div>
       </div>

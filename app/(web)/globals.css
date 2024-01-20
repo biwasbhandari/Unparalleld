@@ -53,7 +53,7 @@ body {
 }
 
 .img {
-  @apply object-cover w-full h-full;
+  @apply object-contain w-full h-full;
 }
 
 .scale-animation {
@@ -66,4 +66,19 @@ body {
 
 .font-normal {
   @apply text-sm md:text-base;
+}
+
+@keyframes spinner-grow {
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
 }

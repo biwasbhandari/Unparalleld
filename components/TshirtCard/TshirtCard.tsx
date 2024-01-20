@@ -10,30 +10,28 @@ type Props = {
 
 const TshirtCard: FC<Props> = (props) => {
   const {
-    tshirt: { coverImage, name, price, size, description, slug, isBooked },
+    tshirt: { coverImage, name, size, slug, isBooked },
   } = props;
 
   return (
-    <div className="rounded-xl w-72 mb-10 mx-auto md:mx-0 overflow-hidden text-black">
-      <div className="h-60 overflow-hidden">
-        <Image
-          src={coverImage.url}
-          alt={name}
-          width={900}
-          height={900}
-          className="img"
-          priority
-        />
+    <div className="rounded-sm w-72 mb-10 mx-auto md:mx-0 overflow-hidden shadow-sm ">
+      <div className="h-80 overflow-hidden">
+        <Link href={`/tshirts/${slug.current}`}>
+          <Image
+            src={coverImage.url}
+            alt={name}
+            width={900}
+            height={900}
+            className="img"
+            priority
+          />
+        </Link>
       </div>
       <div className="p-4">
         <div className="flex justify-between text-xl font-semibold">
           <p className="text-gray-800">{name}</p>
-          <p className="text-black">${price}</p>
         </div>
         <p className="text-xs text-gray-500">Size: {size}</p>
-        <p className="mt-2 text-sm text-gray-700">
-          {description.slice(1, 60)}...
-        </p>
         <Link href={`/tshirts/${slug.current}`}>
           <Button
             className={`mt-4 ${
@@ -41,7 +39,7 @@ const TshirtCard: FC<Props> = (props) => {
             }`}
             disabled={isBooked}
           >
-            {isBooked ? "Booked" : "Book Now"}
+            {isBooked ? "Booked" : "Buy Now"}
           </Button>
         </Link>
       </div>

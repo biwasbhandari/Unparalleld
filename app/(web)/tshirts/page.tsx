@@ -7,6 +7,7 @@ import { getTshirts } from "@/lib/apis";
 import { Tshirt } from "@/models/tshirt";
 import Search from "@/components/Search/Search";
 import TshirtCard from "@/components/TshirtCard/TshirtCard";
+import LoadinSpinner from "../loading";
 
 const Tshirts = () => {
   const [tshirtSizeFilter, setTshirtSizeFilter] = useState("");
@@ -56,7 +57,6 @@ const Tshirts = () => {
   };
 
   const filteredTshirt = filterTshirt(data || []);
-  console.log(filteredTshirt);
 
   return (
     <div>
@@ -66,10 +66,13 @@ const Tshirts = () => {
         setTshirtSizeFilter={setTshirtSizeFilter}
         setSearchQuery={setSearchQuery}
       />
-      <div className="flex justify-around flex-wrap p-3">
-        {filteredTshirt.map((tshirt) => (
-          <TshirtCard key={tshirt._id} tshirt={tshirt} />
-        ))}
+      {isLoading && <LoadinSpinner />}
+      <div className="w-full flex justify-around flex-wrap ">
+        <div className="grid grid-cols-1 gap-10 mt-4 w-3/4 md:grid-cols-3 ">
+          {filteredTshirt.map((tshirt) => (
+            <TshirtCard key={tshirt._id} tshirt={tshirt} />
+          ))}
+        </div>
       </div>
     </div>
   );

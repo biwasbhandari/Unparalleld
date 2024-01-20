@@ -1,49 +1,26 @@
 import Image from "next/image";
 
+const galleryItems = ["/p01.png", "/p04.png", "/p03.png", "/p02.png"];
+
 const Gallery = () => {
   return (
-    <div className="mx-auto container py-14 h-full">
-      <div className="flex flex-wrap md:-m-2">
-        <div className="flex w-1/2 flex-wrap">
-          <div className="w-1/2 p-1 md:p-2 h-48">
+    <div className="mx-auto container py-14">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        {galleryItems.map((item, index) => (
+          <div
+            key={index}
+            className="p-2 bg-slate-200 rounded-sm cursor-pointer hover:bg-white transition"
+          >
             <Image
-              alt="gallery"
-              className="img"
-              src="/p01.jpg"
-              width={200}
-              height={200}
+              alt={`gallery-${index}`}
+              className="h-full w-full object-cover rounded-sm"
+              src={item}
+              width={800}
+              height={800}
+              priority
             />
           </div>
-          <div className="w-1/2 p-1 md:p-2 h-48">
-            <Image
-              alt="gallery"
-              className="img"
-              src="/p04.jpg"
-              width={200}
-              height={200}
-            />
-          </div>
-          <div className="w-full p-1 md:p-2 h-48">
-            <Image
-              alt="gallery"
-              className="img"
-              src="/p03.jpg"
-              width={200}
-              height={200}
-            />
-          </div>
-        </div>
-        <div className="flex w-1/2 flex-wrap">
-          <div className="w-full p-1 md:p-2 h-48">
-            <Image
-              alt="gallery"
-              className="img"
-              src="/p02.jpg"
-              width={200}
-              height={200}
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

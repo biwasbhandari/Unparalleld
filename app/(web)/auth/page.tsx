@@ -49,7 +49,7 @@ const LoginForm: React.FC = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 min-h-[95vh] items-center animate-fade-in">
       <div className="flex justify-center items-center border-gray-400 border-r-2 bg-gray-200 rounded-lg">
         <Image
-          src="/p02.jpg"
+          src="/p02.png"
           alt="Image"
           className="max-w-full h-auto "
           height={500}
@@ -58,7 +58,6 @@ const LoginForm: React.FC = () => {
         />
       </div>
 
-      {/* Form Column */}
       <div className="flex flex-col justify-center items-center ">
         <form
           className="  p-8 max-w-md rounded-lg shadow-sm shadow-gray-400 h-full"
@@ -109,7 +108,7 @@ const LoginForm: React.FC = () => {
             onClick={loginHandler}
           />
           |
-          <Button variant="outline" onClick={loginHandler}>
+          <Button variant="link" onClick={loginHandler}>
             Login using Email
           </Button>
         </span>

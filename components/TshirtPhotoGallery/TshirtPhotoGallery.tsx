@@ -39,7 +39,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
     <div className="container mx-auto">
       <div className="grid md:grid-cols-2  gap-5 px-3">
         <div className="h-[540px]  rounded-2xl overflow-hidden">
-          <div className="hidden md:flex justify-center items-center w-full h-full">
+          <div className="hidden md:flex justify-center items-center w-full h-full bg-gray-100">
             <Image
               src={photos[0].url}
               alt={`Room Photo ${currenPhotoIndex + 1}`}
@@ -47,6 +47,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
               width={500}
               height={500}
               onClick={openModal.bind(this, 0)}
+              priority
             />
           </div>
           <div className="md:hidden flex justify-center items-center w-full h-full">
@@ -57,6 +58,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
               width={500}
               height={500}
               onClick={openModal.bind(this, 0)}
+              priority
             />
           </div>
         </div>
@@ -74,7 +76,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
           {displayPhotos.map((photo, index) => (
             <div
               key={index}
-              className="cursor-pointer h-64 rounded-2xl overflow-hidden"
+              className="cursor-pointer h-64 rounded-2xl overflow-hidden bg-gray-100"
             >
               <Image
                 width={500}
@@ -82,6 +84,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
                 src={photo.url}
                 alt={`Room Photo ${index + 2}`}
                 className="img "
+                priority
               />
             </div>
           ))}
@@ -96,6 +99,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
                 src={photos[maximumVisiblePhotos - 1].url}
                 alt={`Room Photo ${maximumVisiblePhotos}`}
                 className="img"
+                priority
               />
               <div className="absolute cursor-pointer text-white inset-0 flex justify-center bg-[rgba(0,0,0,0.5)] items-center text-2xl">
                 + {remainingPhotosCount}
@@ -113,6 +117,7 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
                 width={500}
                 height={500}
                 className="object-contain w-full h-full"
+                priority
               />
               <div className="flex justify-between items-center py-3">
                 <div className="flex space-x-2 items-center text-white">

@@ -61,7 +61,7 @@ const tShirt = {
         },
       ],
       validation: (Rule) =>
-        Rule.required().min(3).error("Minimum of 3 images required"),
+        Rule.required().min(2).error("Minimum of 2 images required"),
     }),
     defineField({
       name: "coverImage",
