@@ -65,8 +65,8 @@ function Slider() {
         <Image
           src={slides[currentIndex].url}
           alt={`Slide ${currentIndex + 1}`}
-          width={900}
-          height={900}
+          width={1000}
+          height={1000}
           className="img"
           priority
         />
