@@ -37,7 +37,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex justify-around">
+      <div className="flex justify-around flex-wrap">
         <p className="text-center mt-8 text-gray-600">
           &copy; {new Date().getFullYear()} Unparalleld. All rights reserved.
         </p>
