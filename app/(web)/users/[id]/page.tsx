@@ -92,69 +92,37 @@ const UserDetails = (props: { params: { id: string } }) => {
   if (!userData) throw new Error("Cannot fetch data");
 
   return (
-    <div className="min-h-screen w-[95%] md:w-3/4 flex flex-row flex-wrap items-center justify-center mx-auto">
-      <div className="grid md:grid-cols-12 gap-10 w-3/4">
-        <div className="md:col-span-4 lg:col-span-3 shadow-sm bg-[#eff0f2] text-black rounded-lg px-6 py-4">
+    <div className="min-h-screen  flex flex-row flex-wrap justify-center overflow-hidden items-center ">
+      <div className="grid md:grid-cols-12 gap-10 ">
+        <div className="md:col-span-8 lg:col-span-9">
           {userData.image ? (
             <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
               <Image
                 src={userData.image}
                 alt={userData.name}
-                width={143}
-                height={143}
+                width={500}
+                height={500}
                 className="img scale-animation rounded-full"
+                priority
               />
             </div>
           ) : (
             <UserIcon />
           )}
-          <div className="font-normal py-4 text-left">
-            <h6 className="text-xl font-bold pb-3">About</h6>
-            <p className="text-sm">{userData.about ?? ""}</p>
-          </div>
-          <div className="font-normal text-left">
-            <h6 className="text-xl font-bold pb-3">{userData.name}</h6>
-          </div>
-          <div className="flex items-center">
-            <Button onClick={() => signOut({ callbackUrl: "/" })}>
-              <p className="mr-2">Sign Out</p>
-              <FaSignOutAlt />
-            </Button>
-          </div>
-        </div>
-
-        <div className="md:col-span-8 lg:col-span-9">
-          <div className="flex items-center">
+          <div className="flex items-center flex-col justify-center">
             <h5 className="text-2xl font-bold mr-3">Hello, {userData.name}</h5>
-          </div>
-          <div className="md:hidden w-14 h-14 rounded-l-full overflow-hidden">
-            {userData.image ? (
-              <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
-                <Image
-                  src={userData.image}
-                  alt={userData.name}
-                  width={143}
-                  height={143}
-                  className="img scale-animation rounded-full"
-                />
-              </div>
-            ) : (
-              <UserIcon />
-            )}
-          </div>
-          <p className="block w-fit md:hidden text-sm py-2">
-            {userData.about ?? ""}
-          </p>
 
-          <p className="text-xs py-2 font-medium">
-            Joined In {userData._createdAt.split("T")[0]}
-          </p>
-          <div className="md:hidden flex items-center my-2">
-            <p className="mr-2">Sign out</p>
-            <FaSignOutAlt
-              className="text-3xl cursor-pointer"
-              onClick={() => signOut({ callbackUrl: "/" })}
-            />
+            <h6 className="text-xl font-bold pb-3">About</h6>
+            <p className="block w-fit text-sm py-2">{userData.about ?? ""}</p>
+            <p className="text-xs py-2 font-medium">
+              Joined In {userData._createdAt.split("T")[0]}
+            </p>
+          </div>
+          <div className=" flex items-center justify-center my-2">
+            <Button onClick={() => signOut({ callbackUrl: "/" })}>
+              <span>SIGN OUT</span>
+              <FaSignOutAlt className="text-2xl cursor-pointer ml-2" />
+            </Button>
           </div>
 
           <nav className="sticky top-0 px-2 w-fit mx-auto md:w-full md:px-5 py-3 mb-8 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 mt-7">

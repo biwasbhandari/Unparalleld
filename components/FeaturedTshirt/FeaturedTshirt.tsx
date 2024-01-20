@@ -35,6 +35,7 @@ const FeaturedTshirt: FC<Props> = ({ featuredTshirt }) => {
               width={600}
               height={600}
               className="h-full w-full object-cover "
+              priority
             />
           </Link>
         </div>

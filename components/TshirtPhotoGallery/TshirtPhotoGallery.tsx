@@ -36,14 +36,14 @@ const TshirtPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
   const remainingPhotosCount = totalPhotos - maximumVisiblePhotos;
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pt-5">
       <div className="grid md:grid-cols-2  gap-5 px-3">
         <div className="h-[540px]  rounded-2xl overflow-hidden">
-          <div className="hidden md:flex justify-center items-center w-full h-full bg-gray-100">
+          <div className="hidden md:flex justify-center items-center w-full h-full ">
             <Image
               src={photos[0].url}
               alt={`Room Photo ${currenPhotoIndex + 1}`}
-              className="img  cursor-pointer"
+              className="h-full w-full object-cover  cursor-pointer"
               width={500}
               height={500}
               onClick={openModal.bind(this, 0)}

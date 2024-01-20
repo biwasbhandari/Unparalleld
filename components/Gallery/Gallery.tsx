@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const galleryItems = ["/p01.png", "/p04.png", "/p03.png", "/p02.png"];
 
@@ -11,14 +12,16 @@ const Gallery = () => {
             key={index}
             className="p-2 bg-slate-200 rounded-sm cursor-pointer hover:bg-white transition"
           >
-            <Image
-              alt={`gallery-${index}`}
-              className="h-full w-full object-cover rounded-sm"
-              src={item}
-              width={800}
-              height={800}
-              priority
-            />
+            <Link href={`/tshirts`}>
+              <Image
+                alt={`gallery-${index}`}
+                className="h-full w-full object-cover rounded-sm"
+                src={item}
+                width={800}
+                height={800}
+                priority
+              />
+            </Link>
           </div>
         ))}
       </div>

@@ -83,10 +83,10 @@ const TshirtDetails = (props: { params: { slug: string } }) => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-100">
       <TshirtPhotoGallery photos={tshirt.images} />
 
-      <div className="container mx-auto mt-20 flex">
+      <div className="container mx-auto py-20 flex">
         <div className="md:grid md:grid-cols-12 gap-10 px-3">
           <div className="md:col-span-8 md:w-full">
             <div>

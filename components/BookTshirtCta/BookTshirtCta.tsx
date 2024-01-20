@@ -3,6 +3,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Button } from "../ui/button";
 
 type Props = {
   checkinDate: Date | null;
@@ -147,13 +148,13 @@ const BookRoomCta: FC<Props> = (props) => {
         <></>
       )}
 
-      <button
+      <Button
         disabled={isBooked}
         onClick={handleBookNowClick}
         className="btn-primary w-full mt-6 disabled:bg-gray-500 disabled:cursor-not-allowed"
       >
-        {isBooked ? "Booked" : "Book Now"}
-      </button>
+        {isBooked ? "Booked" : "Buy Now"}
+      </Button>
     </div>
   );
 };

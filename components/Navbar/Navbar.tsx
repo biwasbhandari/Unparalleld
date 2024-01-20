@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
       animate={{ y: scrollingDown ? -100 : 0 }}
       transition={{ duration: 0.6 }}
       className={clsx(
-        "flex justify-between px-8 items-center py-3  animate-fade-in font-normal bg-white",
+        "flex justify-between px-8 items-center py-3  animate-fade-in font-normal bg-white relative z-50",
         !scrollingDown && "sticky top-0"
       )}
     >
@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
         </section>
       </div>
 
-      <section className="flex items-center gap-4 z-1000">
+      <section className="flex items-center gap-4 ">
         {session ? (
           <Link href={`/users/${session.user.id}`}>
             {session.user.image ? (
@@ -120,6 +120,7 @@ const Navbar: React.FC = () => {
                   width={40}
                   height={40}
                   className="img scale-animation"
+                  priority
                 />
               </div>
             ) : (
